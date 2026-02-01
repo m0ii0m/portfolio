@@ -1,0 +1,116 @@
+---
+import '../styles/global.css';
+import { Gamepad2, LayoutTemplate, Github, Linkedin, Mail } from 'lucide-react';
+
+const projects = [
+  {
+    title: "Clicker Game",
+    description: "",
+    url: "https://clicker.moiiom.fr",
+    icon: Gamepad2,
+    color: "text-purple-400"
+  },
+  {
+    title: "Site",
+    description: "",
+    url: "https://static.moiiom.fr",
+    icon: LayoutTemplate,
+    color: "text-emerald-400"
+  }
+];
+---
+
+<html lang="fr" class="scroll-smooth">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Portfolio de Ludovic" />
+		<title>Mon Portfolio | Ludovic</title>
+	</head>
+	<body class="bg-gray-950 text-gray-100 min-h-screen selection:bg-indigo-500/30">
+    <!-- Hero Section -->
+    <section class="min-h-[80vh] flex flex-col justify-center items-center text-center px-4 py-20 bg-gradient-to-b from-gray-900 to-gray-950">
+      <div class="space-y-6 max-w-3xl mx-auto">
+        <div class="inline-block p-1 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 mb-4 animate-fade-in">
+          <div class="bg-gray-950 rounded-full p-4">
+             <span class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-pink-400">
+               Portfolio
+             </span>
+          </div>
+        </div>
+        
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
+          Développeur <span class="text-indigo-400">Fullstack</span> & <span class="text-pink-400">DevOps</span>
+        </h1>
+        
+        <p class="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+          Produit avec <span class="text-orange-400 font-semibold">Astro</span>, stylisé avec <span class="text-cyan-400 font-semibold">Tailwind</span>, et déployé avec <span class="text-blue-400 font-semibold">Docker</span>.
+        </p>
+
+        <div class="flex gap-4 justify-center mt-8">
+           <a href="#projets" class="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-indigo-500/20">
+             Voir mes projets
+           </a>
+           <a href="mailto:contact@moiiom.fr" class="px-8 py-3 bg-gray-800 hover:bg-gray-700 text-gray-200 font-medium rounded-lg transition-all border border-gray-700">
+             Me contacter
+           </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section id="projets" class="py-24 px-4 bg-gray-950">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 relative">
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">Mes Réalisations</span>
+          <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {projects.map((project) => (
+            <div class="group relative bg-gray-900 border border-gray-800 rounded-2xl p-8 hover:border-gray-700 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              
+              <div class="relative z-10 flex flex-col h-full">
+                <div class="flex items-center gap-4 mb-6">
+                  <div class={`p-3 rounded-lg bg-gray-800 ring-1 ring-gray-700 group-hover:ring-gray-600 transition-all ${project.color}`}>
+                    <project.icon size={32} />
+                  </div>
+                  <h3 class="text-2xl font-bold text-white group-hover:text-indigo-300 transition-colors">{project.title}</h3>
+                </div>
+
+                <p class="text-gray-400 text-lg mb-8 flex-grow leading-relaxed">
+                  {project.description}
+                </p>
+
+                <a 
+                  href={project.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 bg-gray-800 hover:bg-indigo-600 text-white font-medium rounded-lg transition-all duration-300 group-hover:translate-x-1"
+                >
+                  Visiter le site
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 text-center text-gray-500 border-t border-gray-900 bg-gray-950">
+      <div class="flex justify-center gap-6 mb-8">
+        <a href="#" class="hover:text-indigo-400 transition-colors"><Github size={24} /></a>
+        <a href="#" class="hover:text-indigo-400 transition-colors"><Linkedin size={24} /></a>
+        <a href="#" class="hover:text-indigo-400 transition-colors"><Mail size={24} /></a>
+      </div>
+      <p>&copy; {new Date().getFullYear()} Mon Portfolio. Tous droits réservés.</p>
+    </footer>
+	</body>
+</html>

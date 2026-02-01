@@ -1,0 +1,22 @@
+services:
+  portfolio:
+    build: .
+    container_name: portfolio
+    restart: unless-stopped
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      # Router configuration
+      - "traefik.http.routers.portfolio.rule=Host(`moiiom.fr`)"
+      - "traefik.http.routers.portfolio.entrypoints=websecure"
+      - "traefik.http.routers.portfolio.tls.certresolver=myresolver" # Replacer 'myresolver' par le nom de votre resolver dans traefik.toml
+      # Middleware configuration (Redirect HTTP to HTTPS is usually global, but good to ensure security)
+      # - "traefik.http.routers.portfolio.middlewares=security-headers"
+
+      # Service configuration (Nginx internal port)
+      - "traefik.http.services.portfolio.loadbalancer.server.port=80"
+
+networks:
+  web:
+    external: true
