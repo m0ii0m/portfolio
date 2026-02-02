@@ -1,5 +1,6 @@
 services:
   portfolio:
+    image: ${DOCKER_USERNAME:-portfolio}/portfolio:latest
     build: .
     container_name: portfolio
     restart: unless-stopped
@@ -10,7 +11,7 @@ services:
       # Router configuration
       - "traefik.http.routers.portfolio.rule=Host(`moiiom.fr`)"
       - "traefik.http.routers.portfolio.entrypoints=websecure"
-      - "traefik.http.routers.portfolio.tls.certresolver=myresolver" # Replacer 'myresolver' par le nom de votre resolver dans traefik.toml
+      - "traefik.http.routers.portfolio.tls.certresolver=myresolver"
       # Middleware configuration (Redirect HTTP to HTTPS is usually global, but good to ensure security)
       # - "traefik.http.routers.portfolio.middlewares=security-headers"
 
